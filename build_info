@@ -1,0 +1,2 @@
+DOCKER_REPO=jooksan/debian-s390x
+DOCKER_TAG=jessie
