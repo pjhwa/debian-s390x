@@ -1,0 +1,11 @@
+INSTDIR="/root/debinst"
+
+mkdir -p $INSTDIR
+
+/usr/sbin/debootstrap --variant=minbase --components=main --include=inetutils-ping,iproute2 --arch s390x jessie $INSTDIR http://ftp.kr.debian.org/debian
+
+echo "nameserver 8.8.8.8" > $INSTDIR/etc/resolv.conf
+echo "nameserver 8.8.4.4" >> $INSTDIR/etc/resolv.conf
+
+cd /tmp
+tar --numeric-owner --create --auto-compress --file rootfs.tar.xz --directory=$INSTDIR --transform='s,^./,,' .
